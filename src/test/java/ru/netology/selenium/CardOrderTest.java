@@ -73,7 +73,16 @@ public class CardOrderTest {
     }
 
     @Test
-    void sendFormIsEmpty() {
+    void sendFormEmptyAll() {
+        driver.findElement(cssSelector(".checkbox__box")).click();
+        driver.findElement(cssSelector("button")).click();
+        String message = driver.findElement(cssSelector(".input_type_text .input__sub")).getText();
+        assertEquals("Поле обязательно для заполнения", message.strip());
+    }
+
+    @Test
+    void sendFormEmptyName() {
+        driver.findElement(cssSelector("[data-test-id=phone] input")).sendKeys("+71111111111");
         driver.findElement(cssSelector(".checkbox__box")).click();
         driver.findElement(cssSelector("button")).click();
         String message = driver.findElement(cssSelector(".input_type_text .input__sub")).getText();
